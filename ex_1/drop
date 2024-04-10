@@ -1,0 +1,6 @@
+DROP TABLE compras;
+DROP TABLE livros;
+DROP TABLE assuntos;
+DROP TABLE editoras;
+DROP TABLE cliente;
+DROP TABLE endereco;
