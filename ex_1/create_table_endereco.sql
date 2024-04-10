@@ -4,5 +4,5 @@ create table endereco (
 	numero INTEGER not null,
 	bairro CHAR(50) not null,
 	UF CHAR(2) not null,
-	primary KEY(numero, cep)
+	primary key(numero, cep)
 );

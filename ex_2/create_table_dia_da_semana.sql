@@ -1,4 +1,4 @@
 create table dias_da_semana(
-	id serial primary key not null,
-	dia varchar(20)
+	id serial primary key,
+	dia varchar(15) not null
 );
