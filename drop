@@ -1,5 +1,0 @@
-DROP TABLE endereco;
-DROP TABLE editoras;
-DROP TABLE cliente;
-DROP TABLE livros;
-DROP TABLE assuntos;
