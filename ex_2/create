@@ -1,0 +1,9 @@
+\i create_table_endereco.sql
+\i create_table_empresas.sql
+\i create_table_motoristas.sql
+\i create_table_tipos_onibus.sql
+\i create_table_onibus.sql
+\i create_table_itinerario.sql
+\i create_table_linhas.sql
+\i create_table_dia_da_semana.sql
+\i create_table_horarios.sql

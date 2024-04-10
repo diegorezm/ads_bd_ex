@@ -1,0 +1,9 @@
+DROP TABLE empresas;
+DROP TABLE horarios;
+DROP TABLE linhas;
+DROP TABLE motoristas;
+DROP TABLE onibus;
+DROP TABLE onibus_tipos;
+DROP TABLE itinerario;
+DROP TABLE dias_da_semana;
+DROP TABLE endereco;
