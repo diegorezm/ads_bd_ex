@@ -1,0 +1,7 @@
+-- Crie uma função que receba o código de uma conta, código do grupo, data 
+-- e valor de um lançamento e insira esse lançamento na tabela se a conta e o 
+-- grupo existirem e se o valor corresponder ao tipo do grupo ( grupos de 
+-- receita só podem ter valores positivos e grupos de despesa só podem ter 
+-- valores negativos ). Se não for possível inserir o lançamento, a função deve 
+-- gerar um erro com uma mensagem explicativa sobre o erro ocorrido. A 
+-- função não deve retornar nenhum valor.
