@@ -2,6 +2,7 @@
 -- data,total de vendas no dia e total de vendas acumulado para cada data com venda deste fabricante
 -- no estado indicado.
 
+
 CREATE TYPE vendas_por_estado AS (
     data DATE, 
     vendas_dia INTEGER, 
@@ -12,11 +13,12 @@ CREATE OR REPLACE FUNCTION total_de_vendas_por_estado(
     fabricante_cod fabricante.codigo%TYPE, 
     estado_cod revenda.estado%TYPE
 )
-RETURNS SETOF vendas_por_estado AS $$
+RETURNS vendas_por_estado AS $$
 DECLARE
-	ret vendas_por_estado;
+    ret vendas_por_estado;
+    ultimo_resultado vendas_por_estado;
 BEGIN
-   FOR ret IN
+  FOR ret IN
         SELECT
             v.data,
             COUNT(*) AS vendas_dia,
@@ -28,9 +30,9 @@ BEGIN
         GROUP BY v.data
         ORDER BY v.data
     LOOP
-        RETURN NEXT ret; 
+        ultimo_resultado := ret;
     END LOOP;
-    
-    RETURN;
+
+    RETURN ultimo_resultado;
 END;
 $$ LANGUAGE plpgsql;
