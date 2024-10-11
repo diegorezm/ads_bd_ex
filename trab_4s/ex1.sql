@@ -13,12 +13,11 @@ CREATE OR REPLACE FUNCTION total_de_vendas_por_estado(
     fabricante_cod fabricante.codigo%TYPE, 
     estado_cod revenda.estado%TYPE
 )
-RETURNS vendas_por_estado AS $$
+RETURNS SETOF vendas_por_estado AS $$
 DECLARE
     ret vendas_por_estado;
-    ultimo_resultado vendas_por_estado;
 BEGIN
-  FOR ret IN
+	FOR ret IN
         SELECT
             v.data,
             COUNT(*) AS vendas_dia,
@@ -30,9 +29,9 @@ BEGIN
         GROUP BY v.data
         ORDER BY v.data
     LOOP
-        ultimo_resultado := ret;
+        RETURN NEXT ret; 
     END LOOP;
 
-    RETURN ultimo_resultado;
+    RETURN;
 END;
 $$ LANGUAGE plpgsql;
