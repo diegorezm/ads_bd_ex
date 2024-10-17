@@ -3,8 +3,8 @@
 -- diretoria não possua funcionários, a função deve emitir uma mensagem de aviso.
 
 CREATE TYPE retorno_media_salarial_por_diretoria AS (
-	diretoria_descricao VARCHAR(255),
-  funcao_descricao VARCHAR(255),
+	diretoria_descricao bpchar(10),
+  funcao_descricao bpchar(10),
   media_salarial INTEGER
 );
 
