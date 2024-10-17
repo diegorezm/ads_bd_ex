@@ -37,7 +37,7 @@ BEGIN
         JOIN secao s ON d.codigo = s.diretoria
         JOIN funcionario f ON f.secao = s.codigo
         JOIN funcao fu ON f.funcao = fu.funcao
-        WHERE d.codigo = diretoria
+        WHERE d.codigo = diretoria_cdg
         GROUP BY d.descricao, fu.descricao, d.codigo
         ORDER BY d.codigo
     LOOP
