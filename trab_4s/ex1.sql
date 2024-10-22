@@ -2,36 +2,28 @@
 -- data,total de vendas no dia e total de vendas acumulado para cada data com venda deste fabricante
 -- no estado indicado.
 
-
-CREATE TYPE vendas_por_estado AS (
-    data DATE, 
-    vendas_dia INTEGER, 
-    vendas_acumuladas INTEGER
-);
-
 CREATE OR REPLACE FUNCTION total_de_vendas_por_estado(
     fabricante_cod fabricante.codigo%TYPE, 
     estado_cod revenda.estado%TYPE
 )
-RETURNS SETOF vendas_por_estado AS $$
-DECLARE
-    ret vendas_por_estado;
+RETURNS TABLE ( 
+	  data venda.data%TYPE,
+    vendas_dia INTEGER, 
+    vendas_acumuladas INTEGER
+) 
+LANGUAGE plpgsql AS $$
 BEGIN
-	FOR ret IN
+    RETURN QUERY
         SELECT
-            v.data,
-            COUNT(*) AS vendas_dia,
-            SUM(COUNT(*)) OVER (ORDER BY v.data) AS vendas_acumuladas
+            v.data as data,
+           CAST(COUNT(*) as INTEGER) AS vendas_dia,
+    		CAST(SUM(COUNT(*)) OVER (ORDER BY v.data) as INTEGER) AS vendas_acumuladas
         FROM venda v
         JOIN revenda r ON v.revenda = r.codigo
         JOIN automovel a ON v.automovel = a.codigo
-        WHERE a.fabricante = fabricante_cod AND r.estado = estado_cod
+        WHERE a.fabricante = fabricante_cod 
+        AND r.estado = estado_cod
         GROUP BY v.data
-        ORDER BY v.data
-    LOOP
-        RETURN NEXT ret; 
-    END LOOP;
-
-    RETURN;
+        ORDER BY v.data;
 END;
-$$ LANGUAGE plpgsql;
+$$;
